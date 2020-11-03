@@ -1,0 +1,27 @@
+{
+    "name": "getviewerspro/omnipay-enot",
+    "type": "library",
+    "description": "Enot driver for Omnipay PHP payment library",
+    "keywords": [
+        "php",
+        "omnipay",
+        "enot",
+        "merchant",
+        "payment"
+    ],
+    "homepage": "https://github.com/getviewerspro/omnipay-enot",
+    "license": "MIT",
+    "authors": [
+    ],
+    "require": {
+        "omnipay/common": "^3.0"
+    },
+    "require-dev": {
+        "omnipay/tests": "^3.0",
+    },
+    "autoload": {
+        "psr-4": {
+            "Omnipay\\Enot\\": "src"
+        }
+    }
+}
