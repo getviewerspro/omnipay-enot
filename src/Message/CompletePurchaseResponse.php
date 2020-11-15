@@ -72,6 +72,11 @@ class CompletePurchaseResponse extends AbstractResponse
     public function getAmount()
     {
         return (string)$this->data['amount'];
+    }    
+    
+    public function getMoney()
+    {
+        return (string)$this->data['credited'];
     }
 
     public function getSign2()
