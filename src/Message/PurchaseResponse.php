@@ -37,6 +37,7 @@ class PurchaseResponse extends AbstractResponse implements RedirectResponseInter
 
         if (!empty($this->data['paymentMethod']) AND $this->data['paymentMethod'] == 'qw') {
             $redirect = $this->_redirect_qiwi;
+            
             unset($this->data['paymentMethod']);
         }
 
