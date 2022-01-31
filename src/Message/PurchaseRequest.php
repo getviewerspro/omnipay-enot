@@ -24,6 +24,7 @@ class PurchaseRequest extends AbstractRequest
             'oa' => $this->getAmount(),
             'o' => $this->getTransactionId(),
             's' => $this->calculateSignature(),
+            'paymentMethod' =>  $this->getPaymentMethod() // for QIWI oplata.to
         ]);
     }
 
