@@ -19,6 +19,7 @@ use Omnipay\Common\Message\RedirectResponseInterface;
 class PurchaseResponse extends AbstractResponse implements RedirectResponseInterface
 {
     protected $_redirect = 'https://enot.io/pay';
+    protected $_redirect_qiwi = 'https://oplata.to/pay';
 
     public function isSuccessful()
     {
@@ -32,6 +33,13 @@ class PurchaseResponse extends AbstractResponse implements RedirectResponseInter
 
     public function getRedirectUrl()
     {
+         $redirect = $this->_redirect;
+
+        if (!empty($this->data['paymentMethod']) AND $this->data['paymentMethod'] == 'qw') {
+            $redirect = $this->_redirect_qiwi;
+            unset($this->data['paymentMethod']);
+        }
+
         return $this->_redirect . '?' . http_build_query($this->getRedirectData());
     }
 
