@@ -16,12 +16,14 @@ class PurchaseRequest extends AbstractRequest
     {
         $this->validate(
             'purse',
-            'amount', 'transactionId'
+            'amount', 
+            'transactionId'
         );
 
         return array_filter([
             'm' => $this->getPurse(),
             'oa' => $this->getAmount(),
+            'cr' => $this->getCurrency() ?: 'RUB',
             'o' => $this->getTransactionId(),
             's' => $this->calculateSignature(),
             'paymentMethod' =>  $this->getPaymentMethod() // for QIWI oplata.to
