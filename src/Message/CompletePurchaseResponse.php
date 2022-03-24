@@ -34,6 +34,11 @@ class CompletePurchaseResponse extends AbstractResponse
         }
     }
 
+    public function isSuccessful()
+    {
+        return true;
+    }
+
     public function calculateSignature()
     {
         return md5(implode(':', [
@@ -49,14 +54,9 @@ class CompletePurchaseResponse extends AbstractResponse
         return $this->data['merchant_id'];
     }
 
-    public function isSuccessful()
-    {
-        return true;
-    }
-
     public function getPayer()
     {
-        return $this->data['P_EMAIL'] . ' / ' . $this->getPaymentSystem();
+        return $this->data['payer_details'] . ' / ' . $this->getPaymentSystem();
     }
 
     public function getTransactionReference()
@@ -72,6 +72,11 @@ class CompletePurchaseResponse extends AbstractResponse
     public function getAmount()
     {
         return (string)$this->data['amount'];
+    }  
+
+    public function getCurrency()
+    {
+        return (string)$this->data['currency'];
     }    
     
     public function getMoney()
@@ -85,26 +90,19 @@ class CompletePurchaseResponse extends AbstractResponse
     }
 
     /**
-     * @see http://www.free-kassa.ru/docs/api.php#ex_currencies
+     * @see https://enot.io/knowledge/payment-methods-codes
      * @return string
      */
     protected function getPaymentSystem()
     {
         $map = [
-            'qw' => 'QIWI',
-            'ap' => 'Apple Pay',
-            'cd' => 'Банковские карты',
-            'ya' => 'Яндекс.Деньги',
-            'pa' => 'Payeer',
-            'ad' => 'Advcash',
-            'pm' => 'Perfect Money',
-            'bt' => 'Bitcoin',
-            'et' => 'Ethereum',
-            'sp' => 'Samsung Pay',
-            'bc' => 'Bitcoin Cash',
-            'ds' => 'Dash',
-            'lc' => 'Litecoin',
-            'zc' => 'Zcash',
+            'qw'    => 'QIWI',
+            'ap'    => 'Apple Pay',
+            'cd'    => 'Банковские карты',
+            'ya'    => 'ЮMoney',
+            'pm'    => 'Perfect Money',
+            'trc20' => 'USDT (TRC-20)',
+            'erc20' => 'USDT (ERC-20)',
         ];
 
         return isset($map[$this->data['method']])
