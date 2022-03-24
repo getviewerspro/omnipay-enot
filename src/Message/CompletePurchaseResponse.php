@@ -69,15 +69,20 @@ class CompletePurchaseResponse extends AbstractResponse
         return $this->data['merchant'];
     }
 
-    public function getAmount()
-    {
-        return (string)$this->data['amount'];
-    }  
-
     public function getCurrency()
     {
         return (string)$this->data['currency'];
-    }    
+    }   
+
+    public function getPaymentMethod()
+    {
+        return (string)$this->data['method'];
+    }
+
+    public function getAmount()
+    {
+        return (string)$this->data['amount'];
+    }   
     
     public function getMoney()
     {
@@ -97,16 +102,22 @@ class CompletePurchaseResponse extends AbstractResponse
     {
         $map = [
             'qw'    => 'QIWI',
-            'ap'    => 'Apple Pay',
-            'cd'    => 'Банковские карты',
-            'ya'    => 'ЮMoney',
-            'pm'    => 'Perfect Money',
-            'trc20' => 'USDT (TRC-20)',
-            'erc20' => 'USDT (ERC-20)',
+            'ap'    => 'ApplePay',
+            'cd'    => 'Card',
+            'ya'    => 'YooMoney',
+            'pm'    => 'PerfectMoney',
+            'trc20' => 'USDT-TRC-20',
+            'erc20' => 'USDT-ERC-20',
+            'bt'    => 'Bitcoin',
+            'et'    => 'Ethereum',
+            'bc'    => 'BitcoinCash',
+            'ds'    => 'Dash',
+            'lc'    => 'Litecoin',
+            'zc'    => 'Zcash',
         ];
 
         return isset($map[$this->data['method']])
             ? $map[$this->data['method']]
-            : '';
+            : $this->data['method'];
     }
 }
