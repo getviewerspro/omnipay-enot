@@ -1,17 +1,17 @@
 <?php
 /**
- * Enot driver for Omnipay PHP payment library
+ * FreeKassa driver for Omnipay PHP payment library
  *
- * @link      https://github.com/getviewerspro/omnipay-enot
- * @package   omnipay-enot
+ * @link      https://github.com/hiqdev/omnipay-freekassa
+ * @package   omnipay-freekassa
  * @license   MIT
- * @copyright Copyright (c) 2020, getViewersPRO (https://getviewers.pro/)
+ * @copyright Copyright (c) 2017, HiQDev (http://hiqdev.com/)
  */
 
-namespace Omnipay\Enot\Message;
+namespace Omnipay\FreeKassa\Message;
 
 /**
- * Enot Abstract Request.
+ * FreeKassa Abstract Request.
  */
 abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 {
@@ -40,9 +40,9 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      * Get the secret key.
      * @return string secret key
      */
-    public function getSign()
+    public function getSecretKey()
     {
-        return $this->getParameter('sign');
+        return $this->getParameter('secretKey');
     }
 
     /**
@@ -50,27 +50,31 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      * @param string $key secret key
      * @return self
      */
-    public function setSign($value)
+    public function setSecretKey($value)
     {
-        return $this->setParameter('sign', $value);
+        return $this->setParameter('secretKey', $value);
     }
 
+
     /**
-     * Get the secret key.
+     * Get the secret key for notification signing.
+     *
      * @return string secret key
      */
-    public function getSign2()
+    public function getSecretKey2()
     {
-        return $this->getParameter('sign_2');
+        return $this->getParameter('secretKey2');
     }
 
     /**
-     * Set the secret key.
-     * @param string $key secret key
+     * Set the secret key for notification signing.
+     *
+     * @param string $value secret key
+     *
      * @return self
      */
-    public function setSign2($value)
+    public function setSecretKey2($value)
     {
-        return $this->setParameter('sign_2', $value);
+        return $this->setParameter('secretKey2', $value);
     }
 }

@@ -1,11 +1,11 @@
 <?php
 /**
- * Enot driver for Omnipay PHP payment library
+ * FreeKassa driver for Omnipay PHP payment library
  *
- * @link      https://github.com/getviewerspro/omnipay-enot
- * @package   omnipay-enot
+ * @link      https://github.com/hiqdev/omnipay-freekassa
+ * @package   omnipay-freekassa
  * @license   MIT
- * @copyright Copyright (c) 2020, getViewersPRO (https://getviewers.pro/)
+ * @copyright Copyright (c) 2017, HiQDev (http://hiqdev.com/)
  */
 
 error_reporting(E_ALL & ~E_NOTICE);

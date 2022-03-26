@@ -1,14 +1,14 @@
 <?php
 /**
- * Enot driver for Omnipay PHP payment library
+ * FreeKassa driver for Omnipay PHP payment library
  *
- * @link      https://github.com/getviewerspro/omnipay-enot
- * @package   omnipay-enot
+ * @link      https://github.com/hiqdev/omnipay-freekassa
+ * @package   omnipay-freekassa
  * @license   MIT
- * @copyright Copyright (c) 2020, getViewersPRO (https://getviewers.pro/)
+ * @copyright Copyright (c) 2017, HiQDev (http://hiqdev.com/)
  */
 
-namespace Omnipay\Enot;
+namespace Omnipay\FreeKassa;
 
 use Omnipay\Common\AbstractGateway;
 
@@ -18,22 +18,23 @@ use Omnipay\Common\AbstractGateway;
 class Gateway extends AbstractGateway
 {
     /**
-     *
+     * {@inheritdoc}
      */
     public function getName()
     {
-        return 'Enot';
+        return 'FreeKassa';
     }
 
     /**
-     *
+     * {@inheritdoc}
      */
     public function getDefaultParameters()
     {
         return [
             'purse' => '',
-            'sign'     => '',
-            'sign_2'     => '',
+            'secretKey'     => '',
+            'secretKey2'     => '',
+            'testMode'      => false,
         ];
     }
 
@@ -60,9 +61,9 @@ class Gateway extends AbstractGateway
      * Get the unified secret key.
      * @return string secret key
      */
-    public function getSign()
+    public function getSecretKey()
     {
-        return $this->getParameter('sign');
+        return $this->getParameter('secretKey');
     }
 
     /**
@@ -70,28 +71,28 @@ class Gateway extends AbstractGateway
      * @param string $value secret key
      * @return self
      */
-    public function setSign($value)
+    public function setSecretKey($value)
     {
-        return $this->setParameter('sign', $value);
+        return $this->setParameter('secretKey', $value);
     }
 
     /**
-     * Get the unified secret key.
+     * Get the secret key for notifiction request verification
      * @return string secret key
      */
-    public function getSign2()
+    public function getSecretKey2()
     {
-        return $this->getParameter('sign2');
+        return $this->getParameter('secretKey2');
     }
 
     /**
-     * Set the unified secret key.
+     * Get the secret key for notifiction request verification
      * @param string $value secret key
      * @return self
      */
-    public function setSign2($value)
+    public function setSecretKey2($value)
     {
-        return $this->setParameter('sign2', $value);
+        return $this->setParameter('secretKey2', $value);
     }
 
     /**
@@ -100,7 +101,7 @@ class Gateway extends AbstractGateway
      */
     public function purchase(array $parameters = [])
     {
-        return $this->createRequest('\Omnipay\Enot\Message\PurchaseRequest', $parameters);
+        return $this->createRequest('\Omnipay\FreeKassa\Message\PurchaseRequest', $parameters);
     }
 
     /**
@@ -109,6 +110,6 @@ class Gateway extends AbstractGateway
      */
     public function completePurchase(array $parameters = [])
     {
-        return $this->createRequest('\Omnipay\Enot\Message\CompletePurchaseRequest', $parameters);
+        return $this->createRequest('\Omnipay\FreeKassa\Message\CompletePurchaseRequest', $parameters);
     }
 }

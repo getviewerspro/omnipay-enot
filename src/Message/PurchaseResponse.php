@@ -1,25 +1,24 @@
 <?php
 /**
- * Enot driver for Omnipay PHP payment library
+ * FreeKassa driver for Omnipay PHP payment library
  *
- * @link      https://github.com/getviewerspro/omnipay-enot
- * @package   omnipay-enot
+ * @link      https://github.com/hiqdev/omnipay-freekassa
+ * @package   omnipay-freekassa
  * @license   MIT
- * @copyright Copyright (c) 2020, getViewersPRO (https://getviewers.pro/)
+ * @copyright Copyright (c) 2017, HiQDev (http://hiqdev.com/)
  */
 
-namespace Omnipay\Enot\Message;
+namespace Omnipay\FreeKassa\Message;
 
 use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Common\Message\RedirectResponseInterface;
 
 /**
- * Enot Purchase Response.
+ * FreeKassa Purchase Response.
  */
 class PurchaseResponse extends AbstractResponse implements RedirectResponseInterface
 {
-    protected $_redirect = 'https://enot.io/pay';
-    protected $_redirect_qiwi = 'https://oplata.to/pay';
+    protected $_redirect = 'https://pay.freekassa.ru/';
 
     public function isSuccessful()
     {
@@ -33,13 +32,7 @@ class PurchaseResponse extends AbstractResponse implements RedirectResponseInter
 
     public function getRedirectUrl()
     {
-         $redirect = $this->_redirect;
-
-        if (!empty($this->data['paymentMethod']) AND $this->data['paymentMethod'] == 'qw') {
-            $redirect = $this->_redirect_qiwi;
-        }
-
-        return $redirect . '?' . http_build_query($this->getRedirectData());
+        return $this->_redirect . '?' . http_build_query($this->getRedirectData());
     }
 
     public function getRedirectMethod()
