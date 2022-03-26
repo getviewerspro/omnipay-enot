@@ -21,11 +21,13 @@ class PurchaseRequest extends AbstractRequest
         );
 
         return array_filter([
-            'm' => $this->getPurse(),
-            'oa' => $this->getAmount(),
-            'cr' => $this->getCurrency() ?: 'RUB',
-            'o' => $this->getTransactionId(),
-            's' => $this->calculateSignature(),
+            'm'             => $this->getPurse(),
+            'oa'            => $this->getAmount(),
+            'o'             => $this->getTransactionId(),
+            's'             => $this->calculateSignature(),
+            'c'             => $this->getDescription(),
+            'p'             => $this->getPaymentMethod(),
+            'cr'            => $this->getCurrency(),
             'paymentMethod' =>  $this->getPaymentMethod() // for QIWI oplata.to
         ]);
     }
