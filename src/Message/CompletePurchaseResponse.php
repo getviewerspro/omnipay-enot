@@ -69,20 +69,15 @@ class CompletePurchaseResponse extends AbstractResponse
         return $this->data['merchant'];
     }
 
-    public function getCurrency()
-    {
-        return (string)$this->data['currency'];
-    }   
-
-    public function getPaymentMethod()
-    {
-        return (string)$this->data['method'];
-    }
-
     public function getAmount()
     {
         return (string)$this->data['amount'];
-    }   
+    }  
+
+    public function getCurrency()
+    {
+        return (string)$this->data['currency'];
+    }    
     
     public function getMoney()
     {
